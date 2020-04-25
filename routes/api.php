@@ -19,15 +19,26 @@ use Illuminate\Http\Request;
 
  Route::group(['middleware' => ['jwt.auth']], function() {
        
-       Route::get('clients','ClientController@index');
-       Route::post('clients','ClientController@store');
-       Route::delete('clients/{client}','ClientController@destroy');
-       Route::put('clients/{client}','ClientController@update');
 
-       Route::get('users','UserController@index');
-       Route::post('users','UserController@store');
-       Route::delete('users/{user}','UserController@destroy');
-       Route::put('users/{user}','UserController@update');
+        Route::group(['middleware' => ['role:Admin']], function() {
+            Route::get('clients','ClientController@index');
+            Route::post('clients','ClientController@store');
+            Route::delete('clients/{client}','ClientController@destroy');
+            Route::put('clients/{client}','ClientController@update');
+
+            Route::get('users','UserController@index');
+            Route::post('users','UserController@store');
+            Route::delete('users/{user}','UserController@destroy');
+            Route::put('users/{user}','UserController@update');
+        });
+
+        
+        Route::group(['middleware' => ['role:Vendedor']], function() {
+            Route::get('clients','ClientController@index');
+            Route::post('clients','ClientController@store');
+            Route::delete('clients/{client}','ClientController@destroy');
+            Route::put('clients/{client}','ClientController@update');
+        });
 
     });
 

@@ -19,6 +19,13 @@ class UserTableSeeder extends Seeder
             'role'=>'Admin'
         ]);
 
+          User::create([
+            'name' => 'Vendedor',
+            'email' => 'vendedor@gmail.com',
+            'password' => Hash::make('123456'),
+            'role'=>'Vendedor'
+        ]);
+
         Client::create([
             'name' => 'edwin ramirez',
             'identification' => '1063178719',
