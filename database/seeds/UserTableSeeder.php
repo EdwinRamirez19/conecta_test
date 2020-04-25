@@ -16,6 +16,7 @@ class UserTableSeeder extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('12345'),
+            'role'=>'Admin'
         ]);
 
         Client::create([
@@ -23,6 +24,7 @@ class UserTableSeeder extends Seeder
             'identification' => '1063178719',
             'mail' => 'edwin@gmail.com',
             'address' => 'lorica',
+            
         ]);
     }
 }
