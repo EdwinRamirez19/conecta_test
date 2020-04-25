@@ -43,26 +43,35 @@ class UserController extends Controller
         return response()->json(compact('user'));
     }
 
-    public function register(Request $request)
-        {
-                $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
-            ]);
+    public function getIndexUsers(){
+        return view('users.index');
+    }
 
-            if($validator->fails()){
-                    return response()->json($validator->errors()->toJson(), 400);
-            }
+    public function index(){
+         $users =  User::all();
+         return response()->json(['users'=>$users]);
+    }
 
-            $user = User::create([
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => Hash::make($request->get('password')),
-            ]);
 
-            $token = JWTAuth::fromUser($user);
+    public function store(Request $request,User $user)
+    {
+        $user->create($request->all());
+        return response()->json($user);
+    }
 
-            return response()->json(compact('user','token'),201);
-        }
+    
+    public function update(Request $request,User $user)
+    {
+        $user->update($request->all());
+        return response()->json($user);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return response()->json(['menssage'=>'registro eliminado Exitosamente']);
+    }
+   
 }

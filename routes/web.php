@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('clients','ClientController@getIndex')->name('getIndex');
+
+Route::get('users','UserController@getIndexUsers')->name('getIndexUsers');
