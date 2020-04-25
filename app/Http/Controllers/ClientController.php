@@ -10,7 +10,9 @@ use App\Client;
 class ClientController extends Controller
 {
      
-
+    public function getIndex(){
+        return view('clients.index');
+    }
     public function index(){
          $clients =  Client::all();
          return response()->json(['clients'=>$clients]);

@@ -24,6 +24,7 @@ use Illuminate\Http\Request;
        Route::delete('clients/{client}','ClientController@destroy');
        Route::put('clients/{client}','ClientController@update');
     });
+
     
 
 Route::post('login', 'UserController@authenticate')->name('login');
